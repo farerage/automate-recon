@@ -62,10 +62,10 @@ def upload_file1():
     global file1_paths
     selected_module = module_combobox.get()
 
-    if selected_module == 'doku':
+    if selected_module == 'other_dummy_2':
         if len(file1_paths) < 3:
             file = filedialog.askopenfilename(
-                title="Select Source Data File 1 (Doku)",
+                title="Select Source Data File 1 (other_dummy)",
                 filetypes=[("CSV or Excel files", "*.csv *.xlsx")])
             if file:
                 file1_paths.append(file)
@@ -76,9 +76,9 @@ def upload_file1():
         else:
             messagebox.showwarning("Limit Reached", "You can upload a maximum of 3 files for Source Data File 1.")
     
-    elif selected_module == 'ovo':
+    elif selected_module == 'other_dummy_2':
         zip_file = filedialog.askopenfilename(
-            title="Select ZIP File for OVO",
+            title="Select ZIP File for other_dummy",
             filetypes=[("ZIP files", "*.zip")])
         
         if zip_file:
@@ -90,8 +90,8 @@ def upload_file1():
                     if len(valid_files) > 30:
                         messagebox.showerror("Error", "The ZIP contains more than 30 files. Please limit to 30.")
                     else:
-                        zip_ref.extractall("extracted_ovo_files")
-                        file1_paths = [os.path.join("extracted_ovo_files", f) for f in valid_files]
+                        zip_ref.extractall("extracted_other_dummy_files")
+                        file1_paths = [os.path.join("extracted_other_dummy_files", f) for f in valid_files]
                         update_file1_labels()
                         update_clear_button()
             except zipfile.BadZipFile:
@@ -120,10 +120,10 @@ def upload_file2():
     global file2_path
     selected_module = module_combobox.get()
 
-    if selected_module == 'qrisdanamon':
+    if selected_module == 'other_dummy':
         if len(file2_path) < 3:
             file = filedialog.askopenfilename(
-                title="Select Source Data File 2 (qris_danamon)",
+                title="Select Source Data File 2 (other_dummy2)",
                 filetypes=[("CSV or Excel files", "*.csv *.xlsx")])
             if file:
                 file2_path.append(file)
@@ -176,9 +176,9 @@ def reconcile_files():
 
         reconciliation_module = importlib.import_module(module_name)
 
-        if selected_module == 'doku':
+        if selected_module == 'other_dummy':
             if len(file1_paths) < 1 or len(file1_paths) > 3:
-                messagebox.showerror("Error", "Please upload between 1 and 3 files for Source Data File 1 (Doku).")
+                messagebox.showerror("Error", "Please upload between 1 and 3 files for Source Data File 1 (other_dummy).")
                 return
             sheet_dict = reconciliation_module.reconcile_data(file1_paths, file2_path)
         else:
@@ -223,23 +223,23 @@ def on_module_change(event):
     file1_label2.pack_forget()
     file1_label3.pack_forget()
 
-    if selected_module == 'doku':
-        file1_button.config(text="Upload Source Data File 1 (Doku) - Max 3 Files")
+    if selected_module == 'other_dummy':
+        file1_button.config(text="Upload Source Data File 1 (other_dummy) - Max 3 Files")
         file1_label1.pack(pady=5, after=file1_button)
         file1_label2.pack(pady=5, after=file1_label1)
         file1_label3.pack(pady=5, after=file1_label2)
 
-    elif selected_module == 'ovo':
-        file1_button.config(text="Upload Source Data File 1 (Ovo) - Zip Files")
+    elif selected_module == 'other_dummy':
+        file1_button.config(text="Upload Source Data File 1 (other_dummy) - Zip Files")
         file1_label1.pack(pady=5, after=file1_button)
 
-    elif selected_module == 'qrisdanamon':
-        file1_button.config(text="Upload Source Data File 1 (Qris Danamon) - Max 3 Files")
+    elif selected_module == 'other_dummy':
+        file1_button.config(text="Upload Source Data File 1 (Qris other_dummy2) - Max 3 Files")
         file1_label1.pack(pady=5, after=file1_button)
         file1_label2.pack(pady=5, after=file1_label1)
         file1_label3.pack(pady=5, after=file1_label2)
 
-        file2_button.config(text= "Upload Source Data File 2 (Qris Danamon) - Max 3 Files")
+        file2_button.config(text= "Upload Source Data File 2 (Qris other_dummy2) - Max 3 Files")
         file2_label1.pack(pady=5, after=file2_button)
         file2_label2.pack(pady=5, after=file2_label1)
         file2_label3.pack(pady=5, after=file2_label2)
