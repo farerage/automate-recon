@@ -1,0 +1,1 @@
+([('app', '/Users/fareragerry/tkinter-gui/dist/app', 'EXECUTABLE')],)
